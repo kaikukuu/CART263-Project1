@@ -1,0 +1,162 @@
+{
+    "intro": [
+        {
+            "background": "src/IMG_2113.jpg",
+            "foreground": null,
+            "name": "??",
+            "t1": "come find me.",
+            "t2": "I have been waiting for you."
+        },
+        {
+            "background": "src/IMG_2113.jpg",
+            "name": "You",
+            "t1": "Where am I?",
+            "t2": "Who are you?"
+        },
+        {
+            "background": "src/IMG_2114.jpg",
+            "name": "??",
+            "t1": "Up here.",
+            "t2": "Look up.",
+            "t3": "I need your help to find me before I disappear forever."
+        },
+        {
+            "background": "src/IMG4.png",
+            "name": "You",
+            "t1": "What's happening?",
+            "t2": "Hold on!"
+        },
+        {
+            "background": "src/IMG5.png",
+            "name": "You",
+            "t1": "I can't see anything!",
+            "t2": "Wait!"
+        }
+    ],
+    "clearing": [
+        {
+            "background": "src/IMG2.png",
+            "name": "??",
+            "t1": "can you hear me?",
+            "t2": "Welcome to the forest clearing.",
+            "t3": "Please find any star shards and return them to me before they disappear."
+        },
+        {
+            "background": "src/IMG2.png",
+            "name": "You",
+            "t1": "It's so quiet here.",
+            "t2": "There's something eerie about this place. There's buildings here but no one around.",
+            "next": [
+                "forest",
+                "town"
+            ]
+        }
+    ],
+    "forest": [
+        {
+            "background": "src/IMG1.png",
+            "name": "??",
+            "t1": "You've entered the frozen forest."
+        },
+        {
+            "background": "src/IMG3.png",
+            "name": "You",
+            "t1": "I need to find those star shards.",
+            "t2": "I wonder what happened here.",
+            "next": [
+                "clearing",
+                "town"
+            ]
+        }
+    ],
+    "town": [
+        {
+            "background": "src/IMG_2125.jpg",
+            "name": "??",
+            "t1": "Welcome to the abandoned town.",
+            "t2": "This place used to be bustling with life.",
+            "t3": "are you there?",
+            "t4": "You're close to finding me."
+        },
+        {
+            "background": "src/IMG_2125.jpg",
+            "name": "You",
+            "t1": "What happened here?"
+        },
+        {
+            "background": "src/IMG_2124.jpg",
+            "name": "??",
+            "t1": "I am fading.",
+            "t2": "Would you share your energy with me?",
+            "t3": "Hold me in your hands."
+        },
+        {
+            "background": "src/IMG_2124.jpg",
+            "foreground": "src/imgs/receive.png",
+            "foregroundWidth": 800,
+            "foregroundHeight": 800,
+            "name": "You",
+            "t1": "I hope this helps.",
+            "t2": "What should I do next?",
+            "next": [
+                "clearing",
+                "forest"
+            ]
+        }
+    ],
+    "ending": [
+        {
+            "background": "src/IMG_2114.jpg",
+            "name": "Star",
+            "t1": "Thank you for finding me.",
+            "t2": "I can now restore the light to this world."
+        },
+        {
+            "name": "You",
+            "t1": "I still don't understand what's happening."
+        },
+        {
+            "background": "src/IMG_2114.jpg",
+            "name": "Star",
+            "t1": "I am a shooting star that fell from the sky.",
+            "t2": "I've been waiting long for someone to find me. To show me this world is worth saving.",
+            "t3": "Thank you for helping me. I will return you to where you belong now. Goodbye."
+        },
+        {
+            "background": "src/IMG_2114.jpg",
+            "name": "You",
+            "t1": "Goodbye."
+        }
+    ],
+    "clearing_afterTrigger": [
+        {
+            "background": "src/IMG2.png",
+            "name": "Item",
+            "t1": "You found something in the clearing!",
+            "t2": "It hums softly."
+        },
+        {
+            "background": "src/IMG2.png",
+            "name": "??",
+            "t1": "Keep looking, you're getting closer."
+        }
+    ],
+    "forest_afterTrigger": [
+        {
+            "name": "Item",
+            "t1": "A frozen artifact from the forest!",
+            "t2": "It's cold to the touch."
+        },
+        {
+            "name": "??",
+            "t3": "Please continue searching."
+        }
+    ],
+    "town_afterTrigger": [
+        {
+            "name": "Item",
+            "t1": "A mysterious object hidden in the town!",
+            "t2": "It seems to pulse with energy."
+        }
+    ]
+}

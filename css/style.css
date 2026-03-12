@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(49, 49, 49);
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+
+}
+
+/* DOM overlay screens */
+#start-screen,
+#end-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 30;
+    text-align: center;
+}
+
+#start-title,
+#end-screen h1 {
+    color: white;
+    font-size: 28px;
+    font-weight: 400;
+    text-align: center;
+}
+
+#start-button {
+    padding: 12px 28px;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+}
+
+#start-button:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* DOM item overlay above canvas */
+#item-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 8;
+    pointer-events: none;
+}
+
+.item-node {
+    position: fixed;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.item-node img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+canvas {
+    display: block;
+    /* removes the inline‑element gutter */
+    margin: 0 auto;
+    /* horizontal centre */
+}
+
+#parent {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, .25);
+    width: 98vw;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    /* Add oveflow auto to container */
+    overflow: auto;
+}
+
+div:hover {
+    cursor: pointer;
+}
+
+/* DOM Dialogue Box */
+#dialogue-box {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+#dialogue-content {
+    background: transparent !important;
+}
+
+#dialogue-text {
+    color: white !important;
+    background: transparent !important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+}
+
+#dialogue-choices {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    background: transparent !important;
+}
+
+#dialogue-choices button {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white !important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+#dialogue-choices button:hover {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+#dialogue-choices button.selected {
+    background: rgba(255, 255, 100, 0.3);
+    border-color: yellow;
+}
+
+/* DOM Media Box */
+#media-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 20;
+    box-sizing: border-box;
+    text-align: center;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+#media-image {
+    max-width: 400px;
+    max-height: 400px;
+    display: block;
+    margin: 0 auto 15px auto;
+    border-radius: 4px;
+    background: transparent !important;
+}
+
+#close-media {
+    padding: 10px 30px;
+    background: rgba(0, 0, 0, 0.7) !important;
+    color: white !important;
+    border: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+#close-media:hover {
+    background: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* style for main dialogue text */
+#dialogueText p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, .75);
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+    display: none;
+    z-index: 3;
+}

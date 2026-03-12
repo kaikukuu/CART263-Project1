@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NEW DOM PAGE</title>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* CAN ADD CSS  - > just like any other HTML element */
+        canvas {
+            background: black;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+    <script src="js/dialogue.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <canvas id="testCanvas" width=500 height=500></canvas>
+    <div id="item-layer" style="display: none;"></div>
+
+    <!-- Start screen (DOM-based) -->
+    <div id="start-screen">
+        <h1 id="start-title">today I met a shooting star</h1>
+        <button id="start-button">Start</button>
+    </div>
+
+    <!-- End screen (DOM-based) -->
+    <div id="end-screen" style="display: none;">
+        <h1>The End</h1>
+    </div>
+
+    <!-- Dialogue Box (DOM-based) -->
+    <div id="dialogue-box" style="display: none;">
+        <div id="dialogue-content">
+            <p id="dialogue-text">Press Start to begin...</p>
+        </div>
+        <div id="dialogue-choices" style="display: none;">
+            <!-- choice buttons will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Media/Item Viewer Box (DOM-based) -->
+    <div id="media-box" style="display: none;">
+        <img id="media-image" src="" alt="Item">
+        <button id="close-media">Close (Enter)</button>
+    </div>
+
+</body>
+
+</html>
