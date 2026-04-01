@@ -7,6 +7,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.182.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.182.0/examples/jsm/"
+          }
+        }
+        </script>
     <style>
         body {
             margin: 0;
@@ -28,18 +36,63 @@
     <canvas id="testCanvas" width=500 height=500></canvas>
     <div id="item-layer" style="display: none;"></div>
 
-    <!-- Start screen (DOM-based) -->
     <div id="start-screen">
-        <h1 id="start-title">today I met a shooting star</h1>
+        <h1 id="start-title">a long way from home</h1>
+        <!-- other titles: "a long way from home", "lost in the void", "stranded in space", "help i'm stuck in a black hole", "the void is my home now", "the light at the end of the tunnel", "how did I get here?" -->
         <button id="start-button">Start</button>
     </div>
 
-    <!-- End screen (DOM-based) -->
     <div id="end-screen" style="display: none;">
         <h1>The End</h1>
     </div>
 
-    <!-- Dialogue Box (DOM-based) -->
+    <!-- in game interactive elements    -->
+
+    <div id="inventory" style="display: none;">
+        <h2>Inventory</h2>
+        <ul id="inventory-items">
+            <!-- inventory items will be dynamically inserted here -->
+        </ul>
+    </div>
+
+    <!-- Layer where characters will be displayed -->
+    <div id="character-layer" style="display: none;">
+        <p id="character-name"></p>
+        <p id="character-description"></p>
+    </div>
+
+    <div id="location-layer" style="display: none;">
+        <h2 id="location-name"></h2>
+        <p id="location-description"></p>
+    </div>
+
+    <div id="item-layer" style="display: none;">
+        <h2 id="item-name"></h2>
+        <p id="item-description"></p>
+    </div>
+
+    <div id="puzzle-layer" style="display: none;">
+        <h2 id="puzzle-name"></h2>
+        <p id="puzzle-description"></p>
+    </div>
+
+    <div id="event-layer" style="display: none;">
+        <h2 id="event-name"></h2>
+        <p id="event-description"></p>
+        <div id="flashback-layer" style="display: none;">
+            <h3 id="flashback-name"></h3>
+            <p id="flashback-description"></p>
+        </div>
+
+        <!-- for ex conch item  -->
+    <div id="audioObj-layer"
+        style="display: none;">
+        <h2 id="audioObj-name"></h2>
+        <p id="audioObj-description"></p>
+    </div>
+
+    <!-- Layer where dialogue will be displayed -->
+
     <div id="dialogue-box" style="display: none;">
         <div id="dialogue-content">
             <p id="dialogue-text">Press Start to begin...</p>
@@ -49,7 +102,6 @@
         </div>
     </div>
 
-    <!-- Media/Item Viewer Box (DOM-based) -->
     <div id="media-box" style="display: none;">
         <img id="media-image" src="" alt="Item">
         <button id="close-media">Close (Enter)</button>
