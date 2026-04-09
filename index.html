@@ -28,18 +28,71 @@
             margin: 0 auto;
         }
     </style>
-    <script src="js/dialogue.js"></script>
-    <script src="js/script.js"></script>
+    <!-- <script src="js/dialogue.js"></script>
+    <script src="js/script.js"></script> -->
+
 </head>
 
 <body>
-    <canvas id="testCanvas" width=500 height=500></canvas>
+    <canvas id="testCanvas" width=500 height=500>
+
+    </canvas>
     <div id="item-layer" style="display: none;"></div>
 
     <div id="start-screen">
-        <h1 id="start-title">a long way from home</h1>
-        <!-- other titles: "a long way from home", "lost in the void", "stranded in space", "help i'm stuck in a black hole", "the void is my home now", "the light at the end of the tunnel", "how did I get here?" -->
-        <button id="start-button">Start</button>
+        <div id="start-content">
+            <h1 id="start-title">a long way from home</h1>
+            <button id="start-button">Start</button>
+        </div>
+    </div>
+
+    <div id="intro-screen">
+        <div class="scroll-container">
+            <pre class="ascii-art">
+                                .    +             .   '       ' .  .      . '          .   _|_  '  o            .                    .
+                                .  '   '  o                     .          o  o       |                o         '  +    .  .
+                                '  +            *     .                        '   o    '        '                 .
+                                .  o ~~+        .   '                    .    .     .      '    *  *   .            .         +     o '
+                                *                  '        .      '   .       '     +               +         *       o          +
+                                .              . o  .                                         .   '  '           . +       .        ' .
+                                +            |                      +   .      '     '   .                  '          o   '       *
+                                .    --o-- .       '            .    +                       .  .        *             .       o  ' *
+                                .   .    *   |      '       . .     '    '   +    + .     +  .           +   o        o   +
+                                .   +                .        o .   o         '     +                    '   '               +     ' +
+                                o                . +  '                           _..      .    '    *            '      .
+                                o              ~~+    '             .          '         '`-. `.       '        '  +                .  '    o
+                                .    . .    |   .                      ' .       .  *     \  \ . *     o                   '
+                                +       --o--      .  .  *     .                        |  |                .   .  +           o    .
+                                .    |      .         '          . +         +     /  /  *    o *  o     *                        .
+                                ' +                        /  .                + ' * '   _.-`_.`                     +    . '   .  *  '  .
+                                '       .         /      '       ' o .            '''        .      * *         .
+                                +       .   *   . '   .   .       *                          +          +    .  o  ' .
+                                * o     .                              . o            '         *    '                            '
+                                + . ' . ' *    ' . + .                 '                       .   '       '                  .
+                            </pre>
+            <pre class="ascii-art">
+                                .    +             .   '       ' .  .      . '          .   _|_  '  o            .                    .
+                                .  '   '  o                     .          o  o       |                o         '  +    .  .
+                                '  +            *     .                        '   o    '        '                 .
+                                .  o ~~+        .   '                    .    .     .      '    *  *   .            .         +     o '
+                                *                  '        .      '   .       '     +               +         *       o          +
+                                .              . o  .                                         .   '  '           . +       .        ' .
+                                +            |                      +   .      '     '   .                  '          o   '       *
+                                .    --o-- .       '            .    +                       .  .        *             .       o  ' *
+                                .   .    *   |      '       . .     '    '   +    + .     +  .           +   o        o   +
+                                .   +                .        o .   o         '     +                    '   '               +     ' +
+                                o                . +  '                           _..      .    '    *            '      .
+                                o              ~~+    '             .          '         '`-. `.       '        '  +                .  '    o
+                                .    . .    |   .                      ' .       .  *     \  \ . *     o                   '
+                                +       --o--      .  .  *     .                        |  |                .   .  +           o    .
+                                .    |      .         '          . +         +     /  /  *    o *  o     *                        .
+                                ' +                        /  .                + ' * '   _.-`_.`                     +    . '   .  *  '  .
+                                '       .         /      '       ' o .            '''        .      * *         .
+                                +       .   *   . '   .   .       *                          +          +    .  o  ' .
+                                * o     .                              . o            '         *    '                            '
+                                + . ' . ' *    ' . + .                 '                       .   '       '                  .
+                            </pre>
+        </div>
     </div>
 
     <div id="end-screen" style="display: none;">
@@ -85,27 +138,26 @@
         </div>
 
         <!-- for ex conch item  -->
-    <div id="audioObj-layer"
-        style="display: none;">
-        <h2 id="audioObj-name"></h2>
-        <p id="audioObj-description"></p>
-    </div>
-
-    <!-- Layer where dialogue will be displayed -->
-
-    <div id="dialogue-box" style="display: none;">
-        <div id="dialogue-content">
-            <p id="dialogue-text">Press Start to begin...</p>
+        <div id="audioObj-layer" style="display: none;">
+            <h2 id="audioObj-name"></h2>
+            <p id="audioObj-description"></p>
         </div>
-        <div id="dialogue-choices" style="display: none;">
-            <!-- choice buttons will be dynamically inserted here -->
-        </div>
-    </div>
 
-    <div id="media-box" style="display: none;">
-        <img id="media-image" src="" alt="Item">
-        <button id="close-media">Close (Enter)</button>
-    </div>
+        <!-- Layer where dialogue will be displayed -->
+
+        <div id="dialogue-box" style="display: none;">
+            <div id="dialogue-content">
+                <p id="dialogue-text">Press Start to begin...</p>
+            </div>
+            <div id="dialogue-choices" style="display: none;">
+                <!-- choice buttons will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <div id="media-box" style="display: none;">
+            <img id="media-image" src="" alt="Item">
+            <button id="close-media">Close (Enter)</button>
+        </div>
 
 </body>
 

@@ -21,9 +21,51 @@ body {
     justify-content: center;
     align-items: center;
     gap: 18px;
-    background: rgba(0, 0, 0, 0.6);
+    background: transparent; /* Changed to transparent so ASCII shows behind */
     z-index: 30;
     text-align: center;
+}
+
+#start-content {
+    background: rgba(0, 0, 0, 0.6); /* Moved background here for the title/button area */
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+#ascii-art {
+    font-family: 'Courier New', monospace;
+    color: white;
+    font-size: 14px;
+    line-height: 1.2;
+    /* white-space: pre; */
+    text-align: center;
+}
+
+.scroll-container {
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.ascii-art {
+    animation: scrollLeft 10s linear infinite;
+    font-family: monospace;
+    margin: 0;
+}
+
+@keyframes scrollLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 #start-title,
