@@ -23,9 +23,37 @@
         }
     </script>
     <script type="module" src="universe.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <div id="scene-title">I Don't Remember Grandma</div>
+    <div id="scene-subtitle">Grandma's Room From Memory</div>
+
+    <!-- Add Now Playing box at top right corner -->
+    <div id="now-playing-box">
+        <img id="vinyl-icon" src="src/icons/vinyl.png" alt="Record Player">
+        <div id="now-playing-text">
+            <span class="now-playing-label">Now Playing</span>
+            <span class="now-playing-track">No track selected</span>
+        </div>
+    </div>
+
+    <div id="incoming-call-box" aria-hidden="true">Incoming Call...</div>
+
+    <div id="openbook-box" aria-hidden="true">
+        <img id="openbook-icon" src="src/icons/p1p.png" alt="Open Book">
+    </div>
+
+    <div id="camera-photo-box" aria-hidden="true">
+        <img id="camera-photo-image" src="src/photos/p1.png" alt="Captured photo">
+    </div>
+
+    <div id="conch-video-box" aria-hidden="true">
+        <video id="conch-video" src="src/video/waves.mp4" playsinline loop muted preload="auto"></video>
+        <img id="conch-video-icon" src="src/icons/conch.png" alt="Conch shell">
+    </div>
+
 </body>
 
 </html>

@@ -1,12 +1,5 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-// import { Sun } from './Sun.js';
-// import { PlanetA } from './TeamA.js';
-// import { PlanetB } from './TeamB.js';
-// import { PlanetC } from './TeamC.js';
-// import { PlanetD } from './TeamD.js';
-// import { PlanetE } from './TeamE.js';
-// import { PlanetF } from './TeamF.js';
 import { items } from './js/items.js';
 import { click } from './js/items.js';
 
@@ -15,18 +8,44 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x050510); // Deep space
 
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 30, 60);
+camera.position.set(0, 40, 0);
 camera.lookAt(0, 0, 0);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
+setRendererSize();
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
+function setRendererSize() {
+    const aspectRatio = 16 / 9;
+    let width, height;
+    if (window.innerWidth / window.innerHeight > aspectRatio) {
+        // Window is wider, fit height
+        height = window.innerHeight;
+        width = height * aspectRatio;
+    } else {
+        // Window is taller, fit width
+        width = window.innerWidth;
+        height = width / aspectRatio;
+    }
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    const left = (window.innerWidth - width) / 2;
+    const top = (window.innerHeight - height) / 2;
+    renderer.domElement.style.position = 'absolute';
+    renderer.domElement.style.left = left + 'px';
+    renderer.domElement.style.top = top + 'px';
+    document.documentElement.style.setProperty('--scene-left', left + 'px');
+    document.documentElement.style.setProperty('--scene-top', top + 'px');
+    document.documentElement.style.setProperty('--scene-width', width + 'px');
+    document.documentElement.style.setProperty('--scene-height', height + 'px');
+}
+
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.target.set(9.5, 0.5, 2); // Focus on the center of the floor plane with models
+controls.target.set(0, 0, 0); // Focus on the center of the scene
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.maxDistance = 150;
@@ -48,7 +67,7 @@ keyLight.position.set(-20, 30, 20);
 scene.add(keyLight);
 
 // Create a floating floor
-const floorGeometry = new THREE.PlaneGeometry(50, 50);
+const floorGeometry = new THREE.PlaneGeometry(20, 20);
 const floorMaterial = new THREE.MeshStandardMaterial({
     color: 0x1a1a2e,
     metalness: 0.3,
@@ -59,13 +78,6 @@ floor.rotation.x = -Math.PI / 2; // Rotate to be horizontal
 floor.position.y = 0.5; // Position at ground level
 floor.receiveShadow = true;
 scene.add(floor);
-
-const gridHelper = new THREE.GridHelper(120, 24, 0x444444, 0x222222);
-gridHelper.position.y = -0.1;
-scene.add(gridHelper);
-
-const axesHelper = new THREE.AxesHelper(30);
-scene.add(axesHelper);
 
 // Add some distant stars (background)
 const starsGeometry = new THREE.BufferGeometry();
@@ -149,9 +161,6 @@ function animate(timer) {
     //console.log(delta)
     elapsedTime = timer;
 
-    // Update sun
-    // sun.update(timer);
-
     // Rotate stars slowly
     stars.rotation.y += 0.1 * delta;
 
@@ -184,10 +193,6 @@ function animate(timer) {
             star.line.material.opacity = 1 - star.progress;
         }
     }
-
-    // Update all planets (this handles planet orbit, moon orbits, and critter animations)
-    //  planets.forEach(planet => planet.update(delta));
-
     controls.update();
     renderer.render(scene, camera);
 }
@@ -196,17 +201,16 @@ animate(0);
 
 // Handle window resize
 window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    setRendererSize();
 });
 
 // Click handler
 const mouse = new THREE.Vector2();
 renderer.domElement.addEventListener('click', (event) => {
-    // Calculate mouse position in normalized device coordinates
-    mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-    mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+    const rect = renderer.domElement.getBoundingClientRect();
+    // Calculate mouse position in normalized device coordinates relative to canvas
+    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
     click(mouse, scene, camera);
 });

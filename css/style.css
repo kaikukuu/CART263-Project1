@@ -21,13 +21,15 @@ body {
     justify-content: center;
     align-items: center;
     gap: 18px;
-    background: transparent; /* Changed to transparent so ASCII shows behind */
+    background: transparent;
+    /* Changed to transparent so ASCII shows behind */
     z-index: 30;
     text-align: center;
 }
 
 #start-content {
-    background: rgba(0, 0, 0, 0.6); /* Moved background here for the title/button area */
+    background: rgba(0, 0, 0, 0.6);
+    /* Moved background here for the title/button area */
     padding: 20px;
     border-radius: 8px;
     display: flex;
@@ -135,6 +137,191 @@ canvas {
 div:hover {
     cursor: pointer;
 }
+
+#scene-title {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.72);
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+#scene-subtitle {
+    position: fixed;
+    left: calc(var(--scene-left, 0px) + 16px);
+    top: calc(var(--scene-top, 0px) + var(--scene-height, 100vh) - 16px);
+    transform: translateY(-100%);
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.72);
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    z-index: 9300;
+    pointer-events: none;
+}
+
+#now-playing-box {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    display: none;
+    /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 12px 12px 12px;
+    /* Extra top padding for icon */
+    background: black;
+    border: 2px solid white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+    pointer-events: none;
+    max-width: 220px;
+}
+
+#now-playing-box img {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    animation: spin-vinyl 5s linear infinite;
+}
+
+#now-playing-text {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+}
+
+#incoming-call-box {
+    position: fixed;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    padding: 14px 22px;
+    background: rgba(0, 0, 0, 0.82);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    z-index: 9600;
+    pointer-events: none;
+}
+
+#openbook-box {
+    position: fixed;
+    inset: calc(6vh + 75px) calc(6vw + 75px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 9500;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#openbook-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#camera-photo-box {
+    position: fixed;
+    inset: 8vh 8vw;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 10px;
+    z-index: 9400;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#camera-photo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#conch-video-box {
+    position: fixed;
+    inset: calc(6vh + 75px) calc(6vw + 75px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    z-index: 9450;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#conch-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter: contrast(1.25) saturate(0.7);
+}
+
+#conch-video-icon {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    width: min(20vw, 220px);
+    max-width: 35%;
+    height: auto;
+    opacity: 0.92;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.65));
+    pointer-events: none;
+}
+
+.now-playing-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+}
+
+.now-playing-track {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 /* DOM Dialogue Box */
 #dialogue-box {
@@ -249,4 +436,14 @@ div:hover {
     height: 200px;
     display: none;
     z-index: 3;
+}
+
+@keyframes spin-vinyl {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
