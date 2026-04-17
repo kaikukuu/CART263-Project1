@@ -20,7 +20,7 @@ const shellItem = createItem('shell');
 shellItem.position.set(7.5, 5, 2);
 shellItem.rotation.y = 45;
 const shellLoader = new GLTFLoader();
-shellLoader.load('../models/shell.glb', (gltf) => {
+shellLoader.load('./models/shell.glb', (gltf) => {
     const object = gltf.scene || gltf;
     const scale = 12; // Adjusted size
     object.scale.set(scale, scale, scale);
@@ -36,7 +36,7 @@ shellLoader.load('../models/shell.glb', (gltf) => {
 const phnItem = createItem('rotary_phn');
 phnItem.position.set(6, 5.2, 1);
 const phnLoader = new FBXLoader();
-phnLoader.load('../models/old_rotary_phn.fbx', (object) => {
+phnLoader.load('./models/old_rotary_phn.fbx', (object) => {
     object.scale.set(0.15, 0.15, 0.15);
     object.traverse(child => {
         if (child.isMesh) child.castShadow = true;
@@ -50,7 +50,7 @@ phnLoader.load('../models/old_rotary_phn.fbx', (object) => {
 const vintageLamp = createItem('vintage_lamp');
 vintageLamp.position.set(5, 4.75, -1);
 const lampLoader = new GLTFLoader();
-lampLoader.load('../models/vintage_lamp.glb', (gltf) => {
+lampLoader.load('./models/vintage_lamp.glb', (gltf) => {
     const object = gltf.scene || gltf;
     const scale = 0.3; // Adjusted size
     object.scale.set(scale, scale, scale);
@@ -101,7 +101,7 @@ vintageLamp.add(bulbGlow);
 const tableItem = createItem('table');
 tableItem.position.set(6, 2.5, 0);
 const tableLoader = new GLTFLoader();
-tableLoader.load('../models/ornate_table.glb', (gltf) => {
+tableLoader.load('./models/ornate_table.glb', (gltf) => {
     const object = gltf.scene || gltf;
     const scale = 5;  // Adjusted size
     object.scale.set(scale, scale, scale);
@@ -130,7 +130,7 @@ chairItem.name = 'chair';
 chairPivot.add(chairItem);
 
 const chairLoader = new GLTFLoader();
-chairLoader.load('../models/rocking_chair.glb', (gltf) => {
+chairLoader.load('./models/rocking_chair.glb', (gltf) => {
     const object = gltf.scene || gltf;
     const scale = 1;  // Adjusted size
     object.scale.set(scale, scale, scale);
@@ -163,7 +163,7 @@ chairLoader.load('../models/rocking_chair.glb', (gltf) => {
 const bookItem = createItem('book');
 bookItem.position.set(4, 5.2, 1);
 const bookLoader = new GLTFLoader();
-bookLoader.load('../models/old_book.glb', (gltf) => {
+bookLoader.load('./models/old_book.glb', (gltf) => {
     const object = gltf.scene || gltf;
     const scale = 5.25;  // Adjusted size
     object.scale.set(scale, scale, scale);
@@ -180,7 +180,7 @@ const cameraItem = createItem('camera');
 cameraItem.position.set(4, 5.25, -1);
 cameraItem.rotation.y = 90;
 const cameraLoader = new GLTFLoader();
-cameraLoader.load('../models/film_camera.glb', (gltf) => {
+cameraLoader.load('./models/film_camera.glb', (gltf) => {
     const object = gltf.scene || gltf;
     const scale = 0.1;  // Adjusted size
     object.scale.set(scale, scale, scale);
@@ -197,7 +197,7 @@ const catItem = createItem('cat');
 catItem.position.set(7.5, 5, -1);
 catItem.rotation.y = 90;
 const catLoader = new FBXLoader();
-catLoader.load('../models/cat.fbx', (fbx) => {
+catLoader.load('./models/cat.fbx', (fbx) => {
     const object = fbx.scene || fbx;
     const scale = 0.03;  // Adjusted size
     object.scale.set(scale, scale, scale);
@@ -213,7 +213,7 @@ catLoader.load('../models/cat.fbx', (fbx) => {
 const recordPlayerItem = createItem('record_player');
 recordPlayerItem.position.set(0, 3.5, -3);
 const recordPlayerLoader = new GLTFLoader();
-recordPlayerLoader.load('../models/record_player.glb', (gltf) => {
+recordPlayerLoader.load('./models/record_player.glb', (gltf) => {
     const object = gltf.scene || gltf;
     const scale = 1.25;  // Adjusted size
     object.scale.set(scale, scale, scale);
@@ -232,9 +232,9 @@ let audioState = 0; // 0 = stopped, 1 = audio1 playing, 2 = audio2 playing, 3 = 
 let chairRocking = false;
 let chairRockingInterval;   // setInterval handle for the rocking animation loop
 let chairInitialRotation;   // Stores the chair's x-rotation at rest so it resets cleanly
-const waveAudio = new Audio('../src/audio/wave_sound.wav');
-const lightSwitchAudio = new Audio('../src/audio/light_switch.mp3');
-const ringAudio = new Audio('../src/audio/phn_ring.mp3');
+const waveAudio = new Audio('./src/audio/wave_sound.wav');
+const lightSwitchAudio = new Audio('./src/audio/light_switch.mp3');
+const ringAudio = new Audio('./src/audio/phn_ring.mp3');
 ringAudio.loop = true;
 
 // Phone state machine:
@@ -255,7 +255,7 @@ const incomingCallDelayMs = 5000;     // ms after ring starts before the banner 
 let incomingCallTimer = null;
 let cameraPhotoIndex = 0;  // Cycles through cameraPhotos array on each click
 let lampIsOn = true;
-const pageFlipAudio = new Audio('../src/audio/page-flip.mp3');
+const pageFlipAudio = new Audio('./src/audio/page-flip.mp3');
 
 const cameraPhotos = [
     'src/photos/p1.png',
@@ -390,7 +390,7 @@ function playPickupOnce(reason = 'pickup') {
         pickupAudio.currentTime = 0;
     }
 
-    pickupAudio = new Audio('../src/audio/phn_pickup.mp3');
+    pickupAudio = new Audio('./src/audio/phn_pickup.mp3');
     pickupAudio.loop = false;
     pickupAudio.volume = 1;
     const promise = pickupAudio.play();
@@ -491,7 +491,7 @@ function startConversation() {
         phoneConversationAudio.onended = null;
     }
 
-    phoneConversationAudio = new Audio('../src/audio/voicemail-sound.flac');
+    phoneConversationAudio = new Audio('./src/audio/voicemail-sound.flac');
     phoneConversationAudio.loop = false;
     phoneState = 3; // conversation playing
     phoneConversationAudio.addEventListener('ended', handleConversationEnded);
@@ -513,8 +513,8 @@ function startConversation() {
 }
 
 // Main click handler called by universe.js on every canvas click.
-// Each item gets its own Raycaster check; the first item whose bounding
-// volume is hit handles the click (there is intentionally no early exit
+// Each item gets its own Raycaster check
+// the first item whose bounding volume is hit handles the click (there is intentionally no early exit
 // so multiple overlapping items could theoretically both respond).
 export function click(mouse, scene, camera) {
     if (recordPlayerItem) {
@@ -535,15 +535,15 @@ export function click(mouse, scene, camera) {
             audioState = (audioState + 1) % 4; // Cycles: 0 -> 1 -> 2 -> 3 -> 0
 
             if (audioState === 1) {
-                audio = new Audio('../src/audio/record_song.mp3');
+                audio = new Audio('./src/audio/record_song.mp3');
                 audio.play();
                 console.log('Audio 1 started');
             } else if (audioState === 2) {
-                audio = new Audio('../src/audio/(what a) wonderful world.mp3'); // Change to your second audio file
+                audio = new Audio('./src/audio/(what a) wonderful world.mp3');
                 audio.play();
                 console.log('Audio 2 started');
             } else if (audioState === 3) {
-                audio = new Audio('../src/audio/I Only Have Eyes for You.mp3'); // Change to your fourth audio file
+                audio = new Audio('./src/audio/I Only Have Eyes For You.mp3');
                 audio.play();
                 console.log('Audio 3 started');
             } else {
@@ -683,13 +683,13 @@ export function click(mouse, scene, camera) {
             meowAudio.play();
             console.log('Cat meow sound played');
         }
-        //if the cat is clicked and held for more than 2 seconds, play a purring sound and display a message that says "The cat seems to be comforted by your touch... you feel a little less alone."
+        //if the cat is clicked and held for more than 2 seconds, play a purring sound
         let catClickTimer;
         raycaster.setFromCamera(mouse, camera);
         const intersectsHold = raycaster.intersectObject(catItem, true);
         if (intersectsHold.length > 0) {
             catClickTimer = setTimeout(() => {
-                const purrAudio = new Audio('../src/audio/purr.mp3');
+                const purrAudio = new Audio('./src/audio/purr.mp3');
                 purrAudio.play();
                 console.log('Cat purr sound played');
                 alert("Savu the cat seems to be comforted by your touch... you feel a little less alone."); //Savu means "smoke" in Finnish
@@ -706,7 +706,7 @@ export function click(mouse, scene, camera) {
         const intersects = raycaster.intersectObject(cameraItem, true);
         if (intersects.length > 0) {
             console.log('Camera clicked!');
-            const shutterAudio = new Audio('../src/audio/camera_shutter.mp3');
+            const shutterAudio = new Audio('./src/audio/camera_shutter.mp3');
             shutterAudio.play();
             console.log('Camera shutter sound played');
             showCameraPhotoOverlay();
