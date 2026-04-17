@@ -20,7 +20,7 @@ const shellItem = createItem('shell');
 shellItem.position.set(7.5, 5, 2);
 shellItem.rotation.y = 45;
 const shellLoader = new GLTFLoader();
-shellLoader.load('./models/shell.glb', (gltf) => {
+shellLoader.load('models/shell.glb', (gltf) => {
     const object = gltf.scene || gltf;
     const scale = 12; // Adjusted size
     object.scale.set(scale, scale, scale);
