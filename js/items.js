@@ -232,9 +232,9 @@ let audioState = 0; // 0 = stopped, 1 = audio1 playing, 2 = audio2 playing, 3 = 
 let chairRocking = false;
 let chairRockingInterval;   // setInterval handle for the rocking animation loop
 let chairInitialRotation;   // Stores the chair's x-rotation at rest so it resets cleanly
-const waveAudio = new Audio('../src/audio/wave_sound.wav');
-const lightSwitchAudio = new Audio('../src/audio/light_switch.mp3');
-const ringAudio = new Audio('../src/audio/phn_ring.mp3');
+const waveAudio = new Audio('./src/audio/wave_sound.wav');
+const lightSwitchAudio = new Audio('./src/audio/light_switch.mp3');
+const ringAudio = new Audio('./src/audio/phn_ring.mp3');
 ringAudio.loop = true;
 
 // Phone state machine:
@@ -255,7 +255,7 @@ const incomingCallDelayMs = 5000;     // ms after ring starts before the banner 
 let incomingCallTimer = null;
 let cameraPhotoIndex = 0;  // Cycles through cameraPhotos array on each click
 let lampIsOn = true;
-const pageFlipAudio = new Audio('../src/audio/page-flip.mp3');
+const pageFlipAudio = new Audio('./src/audio/page-flip.mp3');
 
 const cameraPhotos = [
     'src/photos/p1.png',
@@ -390,7 +390,7 @@ function playPickupOnce(reason = 'pickup') {
         pickupAudio.currentTime = 0;
     }
 
-    pickupAudio = new Audio('../src/audio/phn_pickup.mp3');
+    pickupAudio = new Audio('./src/audio/phn_pickup.mp3');
     pickupAudio.loop = false;
     pickupAudio.volume = 1;
     const promise = pickupAudio.play();
@@ -491,7 +491,7 @@ function startConversation() {
         phoneConversationAudio.onended = null;
     }
 
-    phoneConversationAudio = new Audio('../src/audio/voicemail-sound.flac');
+    phoneConversationAudio = new Audio('./src/audio/voicemail-sound.flac');
     phoneConversationAudio.loop = false;
     phoneState = 3; // conversation playing
     phoneConversationAudio.addEventListener('ended', handleConversationEnded);
@@ -535,15 +535,15 @@ export function click(mouse, scene, camera) {
             audioState = (audioState + 1) % 4; // Cycles: 0 -> 1 -> 2 -> 3 -> 0
 
             if (audioState === 1) {
-                audio = new Audio('../src/audio/record_song.mp3');
+                audio = new Audio('./src/audio/record_song.mp3');
                 audio.play();
                 console.log('Audio 1 started');
             } else if (audioState === 2) {
-                audio = new Audio('../src/audio/(what a) wonderful world.mp3'); // Change to your second audio file
+                audio = new Audio('./src/audio/(what a) wonderful world.mp3'); // Change to your second audio file
                 audio.play();
                 console.log('Audio 2 started');
             } else if (audioState === 3) {
-                audio = new Audio('../src/audio/I Only Have Eyes for You.mp3'); // Change to your fourth audio file
+                audio = new Audio('./src/audio/I Only Have Eyes For You.mp3'); // Change to your fourth audio file
                 audio.play();
                 console.log('Audio 3 started');
             } else {
@@ -679,7 +679,7 @@ export function click(mouse, scene, camera) {
         const intersects = raycaster.intersectObject(catItem, true);
         if (intersects.length > 0) {
             console.log('Cat clicked!');
-            const meowAudio = new Audio('../src/audio/meownpurr.mp3');
+            const meowAudio = new Audio('./src/audio/meownpurr.mp3');
             meowAudio.play();
             console.log('Cat meow sound played');
         }
@@ -689,7 +689,7 @@ export function click(mouse, scene, camera) {
         const intersectsHold = raycaster.intersectObject(catItem, true);
         if (intersectsHold.length > 0) {
             catClickTimer = setTimeout(() => {
-                const purrAudio = new Audio('../src/audio/purr.mp3');
+                const purrAudio = new Audio('./src/audio/purr.mp3');
                 purrAudio.play();
                 console.log('Cat purr sound played');
                 alert("Savu the cat seems to be comforted by your touch... you feel a little less alone."); //Savu means "smoke" in Finnish
@@ -706,7 +706,7 @@ export function click(mouse, scene, camera) {
         const intersects = raycaster.intersectObject(cameraItem, true);
         if (intersects.length > 0) {
             console.log('Camera clicked!');
-            const shutterAudio = new Audio('../src/audio/camera_shutter.mp3');
+            const shutterAudio = new Audio('./src/audio/camera_shutter.mp3');
             shutterAudio.play();
             console.log('Camera shutter sound played');
             showCameraPhotoOverlay();
